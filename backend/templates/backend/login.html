@@ -1,0 +1,45 @@
+{# Load the tag library #}
+{% load static %}
+{# Load the tag library #}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<html>
+<head>
+
+</head>
+<body>
+<div class="container">
+<h1 class="text-center">LOGIN PAGE</h1>
+  <div class="container" id="mainContainer">
+    {% for g in geo %}
+        <div class="container">
+            <span>{{ g.name }}</span>
+            <h2>{{ g.userLocations }}</h2>
+            <h2>{{g.ipLocation}}</h2>
+        </div>
+    {% endfor %}
+    </div>
+
+                        <form method="POST" action="ip/new/" class="form-inline">{% csrf_token %}
+                        <input type="text" class="w-50 form-control" placeholder="add ipLocation" name="ipLocation">
+                        <input type="text" class="w-50 form-control" placeholder="add name" name="name">
+                        <input type="text" placeholder="{{user.id}}" name="user_id" value="{{user.id}}">
+
+                        <button type="submit" class="btn btn-success">
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-square-fill" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                              </svg>
+                        </button>
+                    </form>
+
+</div>
+</body>
+</html>
