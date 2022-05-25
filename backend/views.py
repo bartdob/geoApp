@@ -12,13 +12,11 @@ def allLoc(request):
     context = {
         'geo': geo,
     }
-    return render(request, 'backend/login.html', context)
+    return render(request, 'backend/all_locations.html', context)
 
 
-def addIp(request, user_id):
-    user = User.objects.get(id=user_id)
-    print('USER', user)
-    new = GeoLocation(ipLocation=request.POST['ipLocation'], userLocations=request.POST[user],
+def addIp(request):
+    new = GeoLocation(ipLocation=request.POST['ipLocation'], userLocations=request.user,
                       name=request.POST['name'])
     if len(request.POST['ipLocation']) > 2:
         new.save()
