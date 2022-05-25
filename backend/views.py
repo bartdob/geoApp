@@ -26,4 +26,4 @@ def addIp(request):
 def deleteIp(request, ip_id):
     item_to_del = GeoLocation.objects.get(id=ip_id)
     item_to_del.delete()
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('/location')
