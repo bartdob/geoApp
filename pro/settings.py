@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-m-+^zgl8ev!sb+n)tkkh4sl(276g8h@7dwp8)$4d2=x&%c^ww7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://localhost:3000',
+                 '127.0.0.1',]
 
 
 # Application definition
@@ -44,16 +45,21 @@ INSTALLED_APPS = [
     'bootstrap5',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
+    'corsheaders',
+    'frontend',
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'pro.urls'
@@ -75,6 +81,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pro.wsgi.application'
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000",
+    "http://127.0.0.1:3000/api-auth/login/",]
 
 
 # Database
@@ -118,7 +135,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
-
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=55),
