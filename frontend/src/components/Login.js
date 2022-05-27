@@ -20,7 +20,7 @@ class Login extends Component {
     .then(data => data.json())
     .then(
       data => {
-        console.log(data.token);
+        // console.log(data.token);
         this.props.userLogin(data.token);
         this.props.userPassName(this.state.cridentials.username)
       }

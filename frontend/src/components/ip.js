@@ -30,7 +30,7 @@ class Ip extends Component {
             <div>
                 <h1> all IP </h1>
                 {this.state.ip.map(ip => {
-                    return <h3 key={ip.id}> {ip.name} </h3>
+                    return <div className='container border border-info' key={ip.id}> {ip.name} </div>
                 })}
                 <button onClick={this.loadIp}> Get Ip
                 </button>
