@@ -1,18 +1,18 @@
 import React, {useState} from 'react'
 import './App.css';
-import Ip from './components/ip';
+import Ip from './components/AllIp';
 import Login from './components/Login';
 import AddIp from './components/AddIp';
-import AIP from './components/AIP';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     const [username, setUsername] = useState('')
     const [token, setToken] = useState('')
-    var logginButton, ipButton, logoutButton, newIP, newIP2
+    var logginButton, ipButton, logoutButton, newIP
 
     const userLogin = (tok) => {
       setToken(tok);
+      console.warn(tok)
     }
 
     const userPassName = (user) => {
@@ -27,21 +27,19 @@ function App() {
     if (token === '') {
       logginButton = <Login userLogin={userLogin} userPassName={userPassName}/>;
     } else {
-      logginButton = <div>You are logged <strong>{username}</strong></div>;
-      ipButton = <Ip token={token}/>;
-      logoutButton = <a href="/" onClick={logout}>logout</a>
-      newIP = <AddIp token={token} username={username}/>
-      newIP2 = <AIP></AIP>
+        logginButton = <div className='container mt-5'>You are logged as User: <strong>{username}</strong></div>;
+        ipButton = <Ip token={token}/>;
+        logoutButton = <div className='container position-absolute top-30 start-10 translate-middle'><a href="/" onClick={logout}>logout</a></div>
+        newIP = <AddIp token={token} username={username} userLogin={userLogin} userPassName={userPassName}/>
     }
 
     return (
-      <div className="App">
-          <h1>Main Page</h1>
+      <div className="App container">
+          <h1 className='h1'>Main Page</h1>
           {logoutButton}
           {logginButton}
           {ipButton}
           {newIP}
-          {newIP2}
 
       </div>
     );

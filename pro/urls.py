@@ -1,7 +1,12 @@
 from django.contrib import admin
+from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirect
 from django.urls import path, include
 from django.contrib.auth.models import User
-from rest_framework import routers, serializers, viewsets
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework import routers, serializers, viewsets, status
+from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
+
 from backend.serializers import GeoLocationSerializer
 from backend.models import GeoLocation
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
@@ -17,7 +22,7 @@ from rest_framework_simplejwt.views import (
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'is_staff']
+        fields = ['id', 'url', 'username', 'email', 'is_staff']
 
 
 # ViewSets define the view behavior.
@@ -31,33 +36,81 @@ class UserViewSet(viewsets.ModelViewSet):
 class GeoLoctionViewSet(viewsets.ModelViewSet):
     queryset = GeoLocation.objects.all()
     serializer_class = GeoLocationSerializer
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    # authentication_classes = [SessionAuthentication, BasicAuthentication]
+
+    # authentication_classes = [SessionAuthentication, BasicAuthentication]
     # permission_classes = [IsAuthenticated]
 
+    # @csrf_exempt
+    # def get_queryset(self):
+    #     return self.request.GeoLocation.all()
+    #
+    # def list(self, request):
+    #     geo = GeoLocation.objects.all()
+    #     serializer = GeoLocationSerializer(geo, many=True)
+    #     return JsonResponse(serializer.data, safe=False)
+    #
+    # def create(self, request):
+    #     pass
+    #
+    # def retrieve(self, request, pk=None):
+    #     pass
+    #
+    # def update(self, request, pk=None):
+    #     pass
+    #
+    # def partial_update(self, request, pk=None):
+    #     pass
+    #
+    # def destroy(self, request, pk=None):
+    #     pass
+    @csrf_exempt
+    def geoLocation_list(self, request):
+        """
+        List all code snippets, or create a new snippet.
+        """
 
-class CreateGeoLocation(APIView):
-    serializer_class = GeoLocationSerializer
-    queryset = GeoLocation.objects.all()
+        if request.method == 'GET':
+            print("GET GET LOC")
+            geo = GeoLocation.objects.all()
+            serializer = GeoLocationSerializer(geo, many=True)
+            return JsonResponse(serializer.data, safe=False)
 
+        if request.method == 'POST':
+            data = JSONParser().parse(request)
+            print("POST GET LOC")
+            print(data)
+            serializer = GeoLocationSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+                return JsonResponse(serializer.data, status=201)
+            return JsonResponse(serializer.errors, status=400)
 
-    def post(self, request):
-        queryset = GeoLocation.objects.filter(userLocations=self.request.user)
-        if not self.request.session.exist(self.request.session.session_key):
-            self.request.session.create()
+    # def delete(self, request, *args, **kwargs):
+    #     """
+    #     Call the delete() method on the fetched object and then redirect to the
+    #     success URL.
+    #     """
+    #     self.object = self.get_object()
+    #     success_url = self.get_success_url()
+    #     self.object.delete()
+    #     return HttpResponseRedirect(success_url)
+    @csrf_exempt
+    def delete(self, request, pk, format=None):
+        geo = self.get_object(pk)
+        geo.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            userLocations = serializer.data.userLocations
-            ipLocation = self.request.session.session_key
-            name = serializer.data.name
-        GeoLocation.save()
 
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
+# router = routers.SimpleRouter()
 router.register(r'users', UserViewSet)
+# router.register(r'location-api', GeoLoctionViewSet)
 router.register(r'location-api', GeoLoctionViewSet)
-router.register(r'create-ip', CreateGeoLocation)
+#router.register(r'location-api/<int:pk>', GeoDestoryViewset)
+# router.register(r'create-ip', GeoLoctionViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

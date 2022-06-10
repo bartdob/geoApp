@@ -2,7 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 from backend.models import GeoLocation
+from backend.serializers import GeoLocationSerializer
 
 
 def allLoc(request):
@@ -27,3 +31,14 @@ def deleteIp(request, ip_id):
     item_to_del = GeoLocation.objects.get(id=ip_id)
     item_to_del.delete()
     return HttpResponseRedirect('/location')
+
+
+@api_view(['POST'])
+def createIP(request):
+    data = request.data
+    new_ip = GeoLocation.create(
+        body = data['body']
+    )
+    serializer = GeoLocationSerializer(new_ip, many=True)
+    return Response(serializer.data)
+
