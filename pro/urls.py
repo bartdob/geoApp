@@ -11,7 +11,7 @@ from backend.serializers import GeoLocationSerializer
 from backend.models import GeoLocation
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
+from rest_framework_simplejwt.views import TokenVerifyView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -37,33 +37,10 @@ class GeoLoctionViewSet(viewsets.ModelViewSet):
     queryset = GeoLocation.objects.all()
     serializer_class = GeoLocationSerializer
     # authentication_classes = [SessionAuthentication, BasicAuthentication]
-
+    # authentication_classes = [IsAuthenticated]
     # authentication_classes = [SessionAuthentication, BasicAuthentication]
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
-    # @csrf_exempt
-    # def get_queryset(self):
-    #     return self.request.GeoLocation.all()
-    #
-    # def list(self, request):
-    #     geo = GeoLocation.objects.all()
-    #     serializer = GeoLocationSerializer(geo, many=True)
-    #     return JsonResponse(serializer.data, safe=False)
-    #
-    # def create(self, request):
-    #     pass
-    #
-    # def retrieve(self, request, pk=None):
-    #     pass
-    #
-    # def update(self, request, pk=None):
-    #     pass
-    #
-    # def partial_update(self, request, pk=None):
-    #     pass
-    #
-    # def destroy(self, request, pk=None):
-    #     pass
     @csrf_exempt
     def geoLocation_list(self, request):
         """
@@ -119,6 +96,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('location/', include('backend.urls')),
 ]

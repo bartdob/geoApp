@@ -17,11 +17,13 @@ class AddIp extends Component {
     updateUser = (props) => {
       console.warn("user updated")
       const token_passed = this.props.token
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", "Bearer " + token_passed);
+      myHeaders.append('Accept', 'application/json');
+      myHeaders.append('Content-Type', 'application/json');
       fetch('http://127.0.0.1:8000/users/', {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-      },
+        headers: myHeaders,
       })
       .then(data => data.json())
       .then(

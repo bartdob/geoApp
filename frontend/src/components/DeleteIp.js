@@ -16,10 +16,10 @@ class DeleteIp extends Component {
         var requestOptions = {
           method: 'DELETE',
           headers: myHeaders,
-          redirect: 'follow'
+        //   redirect: 'follow'
           };
 
-      fetch("http://127.0.0.1:8000/location-api/"+this.props.geo_id, requestOptions)
+      fetch("http://127.0.0.1:8000/location-api/"+this.props.geo_id+"/", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
