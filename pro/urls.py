@@ -36,9 +36,6 @@ class UserViewSet(viewsets.ModelViewSet):
 class GeoLoctionViewSet(viewsets.ModelViewSet):
     queryset = GeoLocation.objects.all()
     serializer_class = GeoLocationSerializer
-    # authentication_classes = [SessionAuthentication, BasicAuthentication]
-    # authentication_classes = [IsAuthenticated]
-    # authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
     @csrf_exempt
@@ -63,21 +60,11 @@ class GeoLoctionViewSet(viewsets.ModelViewSet):
                 return JsonResponse(serializer.data, status=201)
             return JsonResponse(serializer.errors, status=400)
 
-    # def delete(self, request, *args, **kwargs):
-    #     """
-    #     Call the delete() method on the fetched object and then redirect to the
-    #     success URL.
-    #     """
-    #     self.object = self.get_object()
-    #     success_url = self.get_success_url()
-    #     self.object.delete()
-    #     return HttpResponseRedirect(success_url)
     @csrf_exempt
     def delete(self, request, pk, format=None):
         geo = self.get_object(pk)
         geo.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -86,8 +73,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 # router.register(r'location-api', GeoLoctionViewSet)
 router.register(r'location-api', GeoLoctionViewSet)
-#router.register(r'location-api/<int:pk>', GeoDestoryViewset)
-# router.register(r'create-ip', GeoLoctionViewSet)
+
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

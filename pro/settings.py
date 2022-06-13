@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
-from datetime import timedelta #token JWT
+from datetime import timedelta # token JWT
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,11 +26,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m-+^zgl8ev!sb+n)tkkh4sl(276g8h@7dwp8)$4d2=x&%c^ww7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+if DEBUG:
+    SECRET_KEY
+else:
+    SECRET_KEY = config('SECRET_KEY')
 
 ALLOWED_HOSTS = ['http://localhost:3000',
-                 '127.0.0.1',]
+                 '127.0.0.1',
+                 'https://geo-app1.herokuapp.com/',
+                 'geo-app1.herokuapp.com/',]
 
+print(DEBUG, SECRET_KEY)
 
 # Application definition
 
