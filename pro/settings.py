@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
-from datetime import timedelta # token JWT
+from datetime import timedelta  # token JWT
 from decouple import config
 import django_on_heroku
 
@@ -34,7 +34,8 @@ SECRET_KEY = config('SECRET_KEY')
 ALLOWED_HOSTS = ['http://localhost:3000',
                  '127.0.0.1',
                  'https://geo-app1.herokuapp.com/',
-                 'geo-app1.herokuapp.com/',]
+                 'geo-app1.herokuapp.com/',
+                 ]
 
 print(DEBUG)
 
@@ -114,7 +115,6 @@ DATABASES = {
 }
 
 SESSION_COOKIE_HTTPONLY = False
-
 
 
 # Password validation

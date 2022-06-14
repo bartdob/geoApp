@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from rest_framework.authtoken.models import Token
-from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -37,8 +35,7 @@ def deleteIp(request, ip_id):
 def createIP(request):
     data = request.data
     new_ip = GeoLocation.create(
-        body = data['body']
+        body=data['body']
     )
     serializer = GeoLocationSerializer(new_ip, many=True)
     return Response(serializer.data)
-
