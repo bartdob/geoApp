@@ -1,27 +1,30 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class Login extends Component {
 
+
   state = {
-    cridentials: {username: '', password: '',}
+    cridentials: {username: '', password: '',},
+    token: "",
   }
 
   login = event =>{
-    console.log(this.state.cridentials);
-    fetch('http://127.0.0.1:8000/api/token/', {
+    const url = process.env.REACT_APP_BASE_URL
+    fetch(url+'/api/token/', {
       method: 'POST',
       headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
       body: JSON.stringify(this.state.cridentials),
-    //   credentials: 'include',
     })
     .then(data => data.json())
     .then(
       data => {
-        console.log(data.token);
-        this.props.userLogin(data.token);
+        const read_token = data.access
+        this.setState({token: read_token})
+        this.props.userLogin(read_token);
+        console.warn(this.props.userLogin)
         this.props.userPassName(this.state.cridentials.username)
       }
     ).catch( error => console.log(error))
@@ -34,8 +37,8 @@ class Login extends Component {
   }
 
   signUp = event =>{
-    console.log(this.state.cridentials);
-    fetch('http://127.0.0.1:8000/api/users/', {
+    const url = process.env.REACT_APP_BASE_URL;
+    fetch(url+'/api/users/', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(this.state.cridentials)
@@ -46,12 +49,6 @@ class Login extends Component {
         this.props.userLogin(data.token);
       }
     ).catch( error => console.log(error))
-  }
-
-  inputChanged = event =>{
-    const cred = this.state.cridentials;
-    cred[event.target.name] = event.target.value;
-    this.setState({credentials: cred})
   }
 
   render(){
