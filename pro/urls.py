@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirect
+from django.http import JsonResponse
 from django.urls import path, include
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
