@@ -24,15 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-m-+^zgl8ev!sb+n)tkkh4sl(276g8h@7dwp8)$4d2=x&%c^ww7'
+# SECRET_KEY = 'django-insecure-m-+^zgl8ev!sb+n)tkkh4sl(276g8h@7dwp8)$4d2=x&%c^ww7' for local only
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-if DEBUG:
-    SECRET_KEY
-else:
-    SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 ALLOWED_HOSTS = ['http://localhost:3000',
                  '127.0.0.1',
@@ -93,14 +90,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pro.wsgi.application'
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ALLOW_CREDENTIALS = True
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",
-#     "http://127.0.0.1:3000",
-#     "http://127.0.0.1:8000/location-api/",
-#
-# ]
+CORS_ALLOWED_ORIGINS = [
+     "http://localhost:3000",
+     "http://127.0.0.1:3000",
+     "https://geo-app-react.herokuapp.com",
+     "http://geo-app-react.herokuapp.com"
+]
 
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]

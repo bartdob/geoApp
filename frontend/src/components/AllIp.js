@@ -19,12 +19,12 @@ class AllIp extends Component {
     loadIp = () => {
             const token_passed = this.props.token
             this.setState({token: this.props.token})
-            console.log('token load IP1', this.state.token)
+            const url = process.env.REACT_APP_BASE_URL
             var myHeaders = new Headers();
             myHeaders.append("Authorization", "Bearer " + token_passed);
             myHeaders.append('Accept', 'application/json');
             myHeaders.append('Content-Type', 'application/json');
-            fetch('http://127.0.0.1:8000/location-api/', {
+            fetch(url+'/location-api/', {
               method: 'GET',
               headers: myHeaders,
               body: JSON.stringify(this.state.cridentials)

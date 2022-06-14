@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class Login extends Component {
 
@@ -9,8 +9,8 @@ class Login extends Component {
   }
 
   login = event =>{
-    console.log(this.state.cridentials);
-    fetch('http://127.0.0.1:8000/api/token/', {
+    const url = process.env.REACT_APP_BASE_URL
+    fetch(url+'/api/token/', {
       method: 'POST',
       headers: {
           'Accept': 'application/json',
@@ -37,8 +37,8 @@ class Login extends Component {
   }
 
   signUp = event =>{
-    console.log(this.state.cridentials);
-    fetch('http://127.0.0.1:8000/api/users/', {
+    const url = process.env.REACT_APP_BASE_URL;
+    fetch(url+'/api/users/', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(this.state.cridentials)

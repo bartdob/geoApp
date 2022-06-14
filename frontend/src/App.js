@@ -4,6 +4,7 @@ import Ip from './components/AllIp';
 import Login from './components/Login';
 import AddIp from './components/AddIp';
 import 'bootstrap/dist/css/bootstrap.min.css';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function App() {
     const [username, setUsername] = useState('')

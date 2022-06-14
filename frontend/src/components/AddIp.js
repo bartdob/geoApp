@@ -16,12 +16,13 @@ class AddIp extends Component {
 
     updateUser = (props) => {
       console.warn("user updated")
+      const url = process.env.REACT_APP_BASE_URL
       const token_passed = this.props.token
       var myHeaders = new Headers();
       myHeaders.append("Authorization", "Bearer " + token_passed);
       myHeaders.append('Accept', 'application/json');
       myHeaders.append('Content-Type', 'application/json');
-      fetch('http://127.0.0.1:8000/users/', {
+      fetch(url+'/users/', {
         method: 'GET',
         headers: myHeaders,
       })
@@ -45,7 +46,8 @@ class AddIp extends Component {
     }
 
     addIp = (props, e) => {
-      const token_passed = this.props.token
+      const token_passed = this.props.token;
+      const url = process.env.REACT_APP_BASE_URL
       var myHeaders = new Headers();
       myHeaders.append("Authorization", "Bearer " + token_passed);
       var formdata = new FormData();
@@ -60,7 +62,7 @@ class AddIp extends Component {
         redirect: 'follow'
         };
 
-    fetch("http://127.0.0.1:8000/location-api/", requestOptions)
+    fetch(url+"/location-api/", requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
