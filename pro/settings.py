@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['http://localhost:3000',
                  'https://geo-app1.herokuapp.com/',
                  'geo-app1.herokuapp.com/',]
 
-print(DEBUG, SECRET_KEY)
+print(DEBUG)
 
 # Application definition
 
