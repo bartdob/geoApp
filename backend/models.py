@@ -7,5 +7,8 @@ class GeoLocation(models.Model):
     ipLocation = models.TextField(max_length=100)
     name = models.CharField(max_length=100, default=None)
 
+    objects = models.Manager()
+
     def __str__(self):
         return self.name
+
