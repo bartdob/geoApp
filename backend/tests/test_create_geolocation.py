@@ -11,7 +11,7 @@ from backend.serializers import GeoLocationSerializer
 from backend.models import GeoLocation
 
 
-@pytest.skip
+@pytest.mark.skip('not now')
 @pytest.mark.filterwarnings
 @pytest.mark.django_db
 def test_geoloaction_create():
