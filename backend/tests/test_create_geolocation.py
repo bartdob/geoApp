@@ -11,10 +11,14 @@ from backend.serializers import GeoLocationSerializer
 from backend.models import GeoLocation
 
 
-@pytest.mark.skip('not now')
+# @pytest.mark.skip('not now')
 @pytest.mark.filterwarnings
 @pytest.mark.django_db
 def test_geoloaction_create():
     user1 = User.objects.create_user('test', 'test@test.pl', 'test')
-    GeoLocation.objects.create(user1.id, 'test', 'test')
-    assert GeoLocation.objects.count() == 1
+    # user1.save()
+    Geo1 = GeoLocation.objects.create(ipLocation='test', userLocations=user1, name='test')
+    Geo2 = GeoLocation.objects.create(ipLocation='test2', userLocations=user1, name='test')
+    Geo3 = GeoLocation.objects.create(ipLocation='test3', userLocations=user1, name='test')
+    assert GeoLocation.objects.count() == 3
+
