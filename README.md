@@ -1,4 +1,3 @@
-<<<<<<< tests
 [![Tests](https://github.com/bartdob/geoApp/actions/workflows/testing.yml/badge.svg)](https://github.com/bartdob/geoApp/actions/workflows/testing.yml)
 
 # geoApp
