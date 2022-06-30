@@ -26,4 +26,3 @@ def test_name_of_your_test(api_client):
     # data = response.data
 
     assert response.status_code == HTTP_200_OK
-
