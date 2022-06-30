@@ -22,7 +22,7 @@ jobs:
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: 85ae36573f5aad6e19fadde823896adc
-        filename: Django-project/coverage.json
+        filename: geoApp/coverage.json
         label: coverage
         message: ${{ env.COVERAGE }}
         namedLogo: jest
