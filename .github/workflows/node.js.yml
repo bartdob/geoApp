@@ -21,7 +21,7 @@ jobs:
       uses: schneegans/dynamic-badges-action@v1.1.0
       with:
         auth: ${{ secrets.GIST_SECRET }}
-        gistID: 3de7c013a6bccafda7394b92d76875bc
+        gistID: 85ae36573f5aad6e19fadde823896adc
         filename: Django-project/coverage.json
         label: coverage
         message: ${{ env.COVERAGE }}
