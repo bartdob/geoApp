@@ -1,6 +1,4 @@
-[![Tests](https://github.com/bartdob/geoApp/actions/workflows/testing.yml/badge.svg)](https://github.com/bartdob/geoApp/actions/workflows/testing.yml)
-
-![](coverage.svg)
+[![Tests](https://github.com/bartdob/geoApp/actions/workflows/testing.yml/badge.svg)](https://github.com/bartdob/geoApp/actions/workflows/testing.yml) ![](coverage.svg)
 
 # geoApp
 app to store location IP
