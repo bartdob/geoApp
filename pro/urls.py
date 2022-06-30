@@ -69,9 +69,7 @@ class GeoLoctionViewSet(viewsets.ModelViewSet):
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-# router = routers.SimpleRouter()
 router.register(r'users', UserViewSet)
-# router.register(r'location-api', GeoLoctionViewSet)
 router.register(r'location-api', GeoLoctionViewSet)
 
 

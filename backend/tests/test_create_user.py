@@ -8,4 +8,3 @@ def test_user_create():
     User.objects.create_user('test', 'test@test.pl', 'test')
     User.objects.create_user('test1', 'test1@test.pl')
     assert User.objects.count() == 2
-

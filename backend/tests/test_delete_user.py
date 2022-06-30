@@ -7,5 +7,6 @@ from django.contrib.auth.models import User
 def test_user_create():
     u1 = User.objects.create_user('test', 'test@test.pl', 'test')
     u2 = User.objects.create_user('test1', 'test1@test.pl')
+    print(u2)
     u1.delete()
     assert User.objects.count() == 1
