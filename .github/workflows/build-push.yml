@@ -43,7 +43,7 @@ jobs:
         with:
           tags: ${{ steps.docker_meta.outputs.tags }}
           file: ./Dockerfile
-
+#
 #      - name: Monitor image for vulnerabilities with Snyk
 #        uses: snyk/actions/docker@master
 #        env:
