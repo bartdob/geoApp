@@ -47,7 +47,7 @@ jobs:
       - name: Monitor image for vulnerabilities with Snyk
         uses: snyk/actions/docker@master
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK }}
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: monitor
           image: "ghcr.io/bartdob/geoApp"
