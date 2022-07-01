@@ -44,14 +44,14 @@ jobs:
           tags: ${{ steps.docker_meta.outputs.tags }}
           file: ./Dockerfile
 
-      - name: Monitor image for vulnerabilities with Snyk
-        uses: snyk/actions/docker@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK }}
-        with:
-          command: monitor
-          image: "ghcr.io/bartdob/geoApp"
-          args: --file=Dockerfile --project-name=geoApp
+#      - name: Monitor image for vulnerabilities with Snyk
+#        uses: snyk/actions/docker@master
+#        env:
+#          SNYK_TOKEN: ${{ secrets.SNYK }}
+#        with:
+#          command: monitor
+#          image: "ghcr.io/bartdob/geoApp"
+#          args: --file=Dockerfile --project-name=geoApp
 
       - name: Push image
         uses: docker/build-push-action@v2
