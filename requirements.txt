@@ -34,7 +34,7 @@ python-decouple==3.6
 pytz
 six==1.16.0
 soupsieve==2.3.2.post1
-sqlparse==0.4.2
+sqlparse==0.4.4
 tomli==2.0.1
 whitenoise==6.2.0
 zipp==3.8.0
