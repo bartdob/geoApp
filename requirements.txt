@@ -37,4 +37,4 @@ soupsieve==2.3.2.post1
 sqlparse==0.4.2
 tomli==2.0.1
 whitenoise==6.2.0
-zipp==3.8.0
+zipp==3.19.1
