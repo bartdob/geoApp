@@ -4,16 +4,16 @@ backports.zoneinfo==0.2.1
 beautifulsoup4==4.11.1
 coverage==6.4.1
 dj-database-url==0.5.0
-Django==4.0.4
+Django==4.2.16
 django-bootstrap-v5==1.0.11
 django-cors-headers==3.12.0
 django-filter==21.1
 django-on-heroku==1.1.2
-djangorestframework==3.13.1
-djangorestframework-simplejwt==5.2.0
+djangorestframework==3.15.2
+djangorestframework-simplejwt==5.2.2
 Faker==12.0.1
 flake8==4.0.1
-gunicorn==20.1.0
+gunicorn==22.0.0
 importlib-metadata==4.11.4
 iniconfig==1.1.1
 Markdown==3.3.7
@@ -34,7 +34,8 @@ python-decouple==3.6
 pytz
 six==1.16.0
 soupsieve==2.3.2.post1
-sqlparse==0.4.2
+sqlparse==0.5.0
 tomli==2.0.1
 whitenoise==6.2.0
-zipp==3.8.0
+zipp==3.19.1
+setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
